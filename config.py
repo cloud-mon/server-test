@@ -7,11 +7,11 @@ class Config:
 
     TEST_API_URL = "https://test.cloud-mon.net/api/_internal/check"
 
-    def get_api_url(self, environment: str, check_id: str):
+    def get_api_url(self, environment: str):
         if environment == 'stageing':
-            return self.TEST_API_URL.replace('{check_id}', check_id)
+            return self.TEST_API_URL
         else:
             if environment in self.PROD_API_URL:
-                return self.PROD_API_URL[environment].replace('{check_id}', check_id)
+                return self.PROD_API_URL[environment]
             else:
                 return 0
