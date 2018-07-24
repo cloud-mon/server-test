@@ -16,7 +16,7 @@ def perform_test():
         shell=True))
     f = open(fileName, "r+")
     tmp = f.read()
-    data = json.loads(tmp);
+    data = json.load(tmp)
     result = {
         'random_write': data['jobs'][0]['write']['iops'],
         'random_read': data['jobs'][1]['read']['iops'],
