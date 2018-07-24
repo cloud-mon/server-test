@@ -6,7 +6,6 @@ import tests.file_speedtest
 import tests.network_speedtest
 
 
-
 def main():
     print('Welcome!')
     print(sys.argv)
