@@ -34,6 +34,8 @@ def main():
         api.cloudmon.send_results_to_cloud_mon('disk_random_read', file_speedtest_result['random_read'])
         api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_read', file_speedtest_result['mixed_rand_read'])
         api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_write', file_speedtest_result['mixed_rand_write'])
+
+        # Mark tests as done
         api.cloudmon.send_results_to_cloud_mon('external_tests_done_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
 
         print('Sendet!')
