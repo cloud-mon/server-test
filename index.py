@@ -5,10 +5,11 @@ import tests.file_speedtest
 import tests.network_speedtest
 
 
+
 def main():
     print('Welcome!')
     print(sys.argv)
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         api_token = sys.argv[1]
     else:
         api_token = 'UNKNOWN'
@@ -19,12 +20,13 @@ def main():
     result = tests.network_speedtest.perform_test()
     print(result)
 
-    speed = tests.file_speedtest.diskspeedmeasure(os.getcwd())
-    print("Disk writing speed: %.2f Mbytes per second" % speed)
+    tests.file_speedtest.install_fio()
+    file_speedtest_result = tests.file_speedtest.perform_test()
+    print(file_speedtest_result)
     if api_token != 'UNKNOWN':
         api.cloudmon.send_results_to_cloud_mon(api_token, 'network_upload', result.upload)
         api.cloudmon.send_results_to_cloud_mon(api_token, 'network_download', result.download)
-        api.cloudmon.send_results_to_cloud_mon(api_token, 'disk_speed', speed)
+        api.cloudmon.send_results_to_cloud_mon(api_token, 'disk_speed', file_speedtest_result)
 
 
 if __name__ == "__main__":
