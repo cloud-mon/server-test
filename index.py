@@ -24,9 +24,16 @@ def main():
     file_speedtest_result = tests.file_speedtest.perform_test()
     print(file_speedtest_result)
     if api_token != 'UNKNOWN':
+        # Network
         api.cloudmon.send_results_to_cloud_mon('speed_test_upload', result.upload)
         api.cloudmon.send_results_to_cloud_mon('speed_test_download', result.download)
-        api.cloudmon.send_results_to_cloud_mon('disk_speed', file_speedtest_result)
+
+        #FIO
+
+        api.cloudmon.send_results_to_cloud_mon('disk_random_write', file_speedtest_result['random_write'])
+        api.cloudmon.send_results_to_cloud_mon('disk_random_read', file_speedtest_result['random_read'])
+        api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_read', file_speedtest_result['mixed_rand_read'])
+        api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_write', file_speedtest_result['mixed_rand_write'])
         print('Sendet!')
 
 

@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from subprocess import call
 
 
@@ -15,6 +16,11 @@ def perform_test():
         shell=True))
     f = open(fileName, "r+")
     tmp = f.read()
-    print(tmp)
-
-    return tmp
+    data = json.loads(tmp);
+    result = {
+        'random_write': data['jobs'][0]['write']['iops'],
+        'random_read': data['jobs'][1]['read']['iops'],
+        'mixed_rand_read': data['jobs'][2]['read']['iops'],
+        'mixed_rand_write': data['jobs'][2]['write']['iops']
+    }
+    return result
