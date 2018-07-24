@@ -1,11 +1,11 @@
 class Config:
     PROD_API_URL = {
-        "Germany": "https://cloud-mon.net/api/_internal/check/{check_id}",
-        "sing": "https://sing.cloud-mon.net/api/_internal/check/{check_id}",
-        "ny": "https://do.cloud-mon.net/api/_internal/check/{check_id}"
+        "Germany": "https://cloud-mon.net/api/_internal/check",
+        "sing": "https://sing.cloud-mon.net/api/_internal/check",
+        "ny": "https://do.cloud-mon.net/api/_internal/check"
     }
 
-    TEST_API_URL = "https://test.cloud-mon.net/api/_internal/check/{check_id}"
+    TEST_API_URL = "https://test.cloud-mon.net/api/_internal/check"
 
     def get_api_url(self, environment: str, check_id: str):
         if environment == 'stageing':

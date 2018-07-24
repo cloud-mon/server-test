@@ -9,7 +9,7 @@ def send_results_to_cloud_mon(check_id: str, test: str, result: float):
     api_key = os.getenv('CLOUD_MON_API_KEY')
     provider = os.getenv('CLOUD_MON_PROVIDER')
     requests.post(url, {
-        test: test,
+        check: test,
         result: result,
         api_key: api_key,
         provider: provider
