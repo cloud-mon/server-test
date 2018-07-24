@@ -15,3 +15,4 @@ def send_results_to_cloud_mon(check: str, result: float):
         provider: provider
     })
     print(r)
+    print(r.text)
