@@ -9,7 +9,7 @@ import tests.network_speedtest
 def main():
     print('Welcome at the test !')
     print(sys.argv)
-    tests.cpu_speedtest.install_coremark()
+   # tests.cpu_speedtest.install_coremark()
     tests.cpu_speedtest.perform_test()
 
 
