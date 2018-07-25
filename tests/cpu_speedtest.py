@@ -21,7 +21,7 @@ def perform_test():
     f = open(file_name, "r+")
     data = f.read()
 
-    print(parse_result(data))
+    return parse_result(data)
 
 
 def parse_result(result=None):
