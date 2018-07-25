@@ -20,5 +20,5 @@ def perform_test():
         shell=True))
     f = open(fileName, "r+")
     data = f.read()
-    data = data.replace('2K performance run parameters for coremark.', '').replace(' ','')
+    data = data.replace('2K performance run parameters for coremark.', '').replace(' ','').splitlines()
     print(data)
