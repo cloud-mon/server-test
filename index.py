@@ -4,6 +4,7 @@ import os
 import sys
 import tests.file_speedtest
 import tests.network_speedtest
+import tests.cpu_speedtest
 
 
 def main():
@@ -28,10 +29,14 @@ def main():
     api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_read', file_speedtest_result['mixed_rand_read'])
     api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_write', file_speedtest_result['mixed_rand_write'])
 
+    # CPU Test
+    tests.cpu_speedtest.install_coremark()
+    cpu_speedtest_result = tests.cpu_speedtest.perform_test()
+    api.cloudmon.send_results_to_cloud_mon('cpu_iterations_per_sec', cpu_speedtest_result['iterations_per_sec'])
+
     # Mark tests as done
     api.cloudmon.send_results_to_cloud_mon('external_tests_done_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
     print('Sendet!')
-
 
 
 if __name__ == "__main__":
