@@ -17,10 +17,13 @@ def perform_test():
     print(call(
         'cd php-src && ./buildconf -f >> /dev/null && ./configure >> /dev/null ',
         shell=True))
-    print(call(
-        'cd php-src && time make -j ' + str(os.getenv(
-            'SERVER_CORES', '1')) + '>> test_result.log ',
-        shell=True))
+    command = 'cd php-src && time make -s -j ' + str(os.getenv(
+        'SERVER_CORES', '1')) + '>> test_result.log '
+    print(command)
+    print(call('cd php-src && time make -s -j ' + str(os.getenv(
+        'SERVER_CORES', '1')) + '>> test_result.log '
+               ,
+               shell=True))
     f = open(file_name, "r+")
     data = f.read()
     print(data)
