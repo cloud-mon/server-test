@@ -9,16 +9,16 @@ def install_coremark():
 
 
 def perform_test():
-    fileName = "coremark/run1.log"
+    file_name = "coremark/run1.log"
     try:
-        os.remove(fileName)
+        os.remove(file_name)
     except OSError:
         pass
     print(call(
         'cd coremark && make PORT_DIR=linux64 ITERATIONS=200000 XCFLAGS="-g -O2 -DMULTITHREAD=' + str(os.getenv(
             'SERVER_CORES', '2')) + ' -DUSE_PTHREAD -DPERFORMANCE_RUN=1" REBUILD=1',
         shell=True))
-    f = open(fileName, "r+")
+    f = open(file_name, "r+")
     data = f.read()
 
     print(parse_result(data))
