@@ -9,7 +9,7 @@ def install_coremark():
 
 
 def perform_test():
-    fileName = "coremark/tmp_result.json"
+    fileName = "coremark/run1.log"
     try:
         os.remove(fileName)
     except OSError:
