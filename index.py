@@ -9,7 +9,7 @@ import tests.network_speedtest
 def main():
     print('Welcome!')
     print(sys.argv)
-    api.cloudmon.send_results_to_cloud_mon('external_tests_as started_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
+    api.cloudmon.send_results_to_cloud_mon('external_tests_has_started_on_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
     print('Now i will perform the tests.')
     print('First of all the network speed app')
     result = tests.network_speedtest.perform_test()
