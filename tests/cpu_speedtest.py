@@ -30,8 +30,8 @@ def parse_result(result=None):
     }
     data = result.replace('2K performance run parameters for coremark.', '').replace(' ', '').splitlines()
     for line in data:
-        if len(data) > 0:
-            _data = data.split(':')
+        if len(line) > 0:
+            _data = line.split(':')
             if _data[0] == 'Iterations/Sec':
                 parsed_result['iterations_per_sec'] = _data[1]
 
