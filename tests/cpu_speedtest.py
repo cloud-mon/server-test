@@ -5,7 +5,8 @@ from subprocess import call
 
 
 def install_coremark():
-    call(['git', 'clone', 'https://github.com/cloud-mon/coremark.git'])
+    if not os.path.isdir("coremark"):
+        call(['git', 'clone', 'https://github.com/cloud-mon/coremark.git'])
 
 
 def perform_test():
