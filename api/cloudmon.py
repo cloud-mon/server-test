@@ -9,13 +9,15 @@ def send_results_to_cloud_mon(check: str, result):
     api_key = os.getenv('CLOUD_MON_API_KEY')
     provider = os.getenv('CLOUD_MON_PROVIDER')
     server_id = os.getenv('CLOUD_MON_SERVER_ID')
+    type_id = os.getenv('CLOUD_MON_TYPE_ID')
     print(api_key)
     payload = {
         'check': check,
         'result': result,
         'api_key': api_key,
         'provider': provider,
-        'server_id': server_id
+        'server_id': server_id,
+        'type_id': type_id
     }
     r = requests.post(url, data=payload)
     print(r)
