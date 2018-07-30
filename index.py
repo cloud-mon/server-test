@@ -35,7 +35,7 @@ def main():
     cpu_speedtest_result = tests.cpu_speedtest.perform_test()
     api.cloudmon.send_results_to_cloud_mon('cpu_iterations_per_sec', cpu_speedtest_result['iterations_per_sec'])
 
-    if os.getenv('TEST_VOLUME_TOO') == 1:
+    if os.getenv('TEST_VOLUME_TOO') == "1":
         print('Volume Speedtest')
         file_speedtest_result = tests.file_speedtest.perform_test(True)
         print(file_speedtest_result)
