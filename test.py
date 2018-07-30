@@ -23,6 +23,9 @@ def main():
         print(tests.file_speedtest.perform_test())
     elif test == 'network':
         print(tests.network_speedtest.perform_test())
+    elif test == 'volume':
+        print(tests.file_speedtest.install_fio())
+        print(tests.file_speedtest.perform_test(True))
 
 
 if __name__ == "__main__":

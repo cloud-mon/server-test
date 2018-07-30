@@ -9,20 +9,20 @@ def install_fio():
 
 
 def perform_test(volume=False):
-    fileName = "tmp_result.json"
+    file_name = "tmp_result.json"
     try:
-        os.remove(fileName)
+        os.remove(file_name)
     except OSError:
         pass
 
     precall = ''
-    if volume == True:
+    if volume:
         precall = 'cd /mnt/test-volume && '
 
     print(call(
-        precall + 'fio --output-format=json --filesize=3g --ioengine=libaio --filename=fio_test_file --overwrite=1 --invalidate=0 --direct=1 --randrepeat=0 --iodepth=64 --size=4097152k --blocksize=4k --name=random_write --rw=randwrite --end_fsync=1 --name=random_read --stonewall --rw=randread --name=mixed_randrw --stonewall --rw=randrw --rwmixread=90 --rwmixwrite=10 --end_fsync=1 >> ' + fileName,
+        precall + 'fio --output-format=json --filesize=3g --ioengine=libaio --filename=fio_test_file --overwrite=1 --invalidate=0 --direct=1 --randrepeat=0 --iodepth=64 --size=4097152k --blocksize=4k --name=random_write --rw=randwrite --end_fsync=1 --name=random_read --stonewall --rw=randread --name=mixed_randrw --stonewall --rw=randrw --rwmixread=90 --rwmixwrite=10 --end_fsync=1 >> ' + file_name,
         shell=True))
-    f = open(fileName, "r+")
+    f = open(file_name, "r+")
     data = json.load(f)
     result = {
         'random_write': data['jobs'][0]['write']['iops'],
