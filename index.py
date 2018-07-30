@@ -18,7 +18,7 @@ def main():
     # Network
     api.cloudmon.send_results_to_cloud_mon('speed_test_upload', result.upload)
     api.cloudmon.send_results_to_cloud_mon('speed_test_download', result.download)
-
+    print('Perform FIO')
     tests.file_speedtest.install_fio()
     file_speedtest_result = tests.file_speedtest.perform_test()
     print(file_speedtest_result)
@@ -29,11 +29,24 @@ def main():
     api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_read', file_speedtest_result['mixed_rand_read'])
     api.cloudmon.send_results_to_cloud_mon('disk_random_mixed_write', file_speedtest_result['mixed_rand_write'])
 
+    print('Perform CPU Test')
     # CPU Test
     tests.cpu_speedtest.install_coremark()
     cpu_speedtest_result = tests.cpu_speedtest.perform_test()
     api.cloudmon.send_results_to_cloud_mon('cpu_iterations_per_sec', cpu_speedtest_result['iterations_per_sec'])
 
+    if os.getenv('TEST_VOLUME_TOO') == 1:
+        print('Volume Speedtest')
+        file_speedtest_result = tests.file_speedtest.perform_test(True)
+        print(file_speedtest_result)
+        # FIO on Volume
+
+        api.cloudmon.send_results_to_cloud_mon('volume_random_write', file_speedtest_result['random_write'])
+        api.cloudmon.send_results_to_cloud_mon('volume_random_read', file_speedtest_result['random_read'])
+        api.cloudmon.send_results_to_cloud_mon('volume_random_mixed_read', file_speedtest_result['mixed_rand_read'])
+        api.cloudmon.send_results_to_cloud_mon('volume_random_mixed_write', file_speedtest_result['mixed_rand_write'])
+
+    print('Send Mark as "Ended" Request')
     # Mark tests as done
     api.cloudmon.send_results_to_cloud_mon('external_tests_done_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
     print('Sendet!')
