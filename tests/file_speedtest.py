@@ -19,8 +19,8 @@ def perform_test(volume=False):
     path = ''
     filesize = "3"
     if volume:
-        file = '/mnt/test-volume/' + file
-        path = '/mnt/test-volume/'
+        file = '/mnt/test_volume/' + file
+        path = '/mnt/test_volume/'
         file_name = path + "tmp_result.json"
         filesize = "3"
 
