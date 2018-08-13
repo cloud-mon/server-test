@@ -22,4 +22,4 @@ def perform_test():
     print(command)
     call(command, shell=True)
     sec_end = time.time()
-    return sec_end - sec_start
+    return round(sec_end - sec_start, 2)
