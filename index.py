@@ -51,7 +51,7 @@ def main():
     tests.php_build_speedtest.clone_php_src()
     php_build_test_result = tests.php_build_speedtest.perform_test()
     api.cloudmon.send_results_to_cloud_mon('real_world_php_build_time',php_build_test_result)
-    
+
     # Mark tests as done
     api.cloudmon.send_results_to_cloud_mon('external_tests_done_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
     print('Sendet!')
