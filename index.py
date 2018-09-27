@@ -7,6 +7,7 @@ import tests.network_speedtest
 import tests.cpu_speedtest
 import tests.php_build_speedtest
 
+
 def main():
     print('Welcome!')
     print(sys.argv)
@@ -48,11 +49,11 @@ def main():
 
     print('Send Mark as "Ended" Request')
 
-    if str(os.getenv("CLOUD_MON_PROVIDER")) == "1" or str(os.getenv("CLOUD_MON_PROVIDER")) == "2":
-        print('Perform PHP Build Test')
-        tests.php_build_speedtest.clone_php_src()
-        php_build_test_result = tests.php_build_speedtest.perform_test()
-        api.cloudmon.send_results_to_cloud_mon('real_world_php_build_time',php_build_test_result)
+    # if str(os.getenv("CLOUD_MON_PROVIDER")) == "1" or str(os.getenv("CLOUD_MON_PROVIDER")) == "2":
+    # print('Perform PHP Build Test')
+    # tests.php_build_speedtest.clone_php_src()
+    # php_build_test_result = tests.php_build_speedtest.perform_test()
+    # api.cloudmon.send_results_to_cloud_mon('real_world_php_build_time',php_build_test_result)
 
     # Mark tests as done
     api.cloudmon.send_results_to_cloud_mon('external_tests_done_' + os.getenv('CLOUD_MON_SERVER_ID'), 0)
