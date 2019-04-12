@@ -9,23 +9,37 @@ import tests.network_speedtest
 
 
 def main():
-    print('Welcome at the test !')
-    print(sys.argv)
-    test = sys.argv[1]
-    if test == 'php':
-        print(tests.php_build_speedtest.clone_php_src())
-        print(tests.php_build_speedtest.perform_test())
-    elif test == 'cpu':
-        print(tests.cpu_speedtest.install_coremark())
-        print(tests.cpu_speedtest.perform_test())
-    elif test == 'file':
-        print(tests.file_speedtest.install_fio())
-        print(tests.file_speedtest.perform_test())
-    elif test == 'network':
-        print(tests.network_speedtest.perform_test())
-    elif test == 'volume':
-        print(tests.file_speedtest.install_fio())
-        print(tests.file_speedtest.perform_test(True))
+    print('Cloud Mon on host tester!\n')
+    if len(sys.argv) > 1:
+        test = sys.argv[1]
+        if test == 'php':
+            print("Running PHP build Test\n")
+            print(tests.php_build_speedtest.clone_php_src())
+            print(tests.php_build_speedtest.perform_test())
+        elif test == 'cpu':
+            print("Running CPU Test\n")
+            print(tests.cpu_speedtest.install_coremark())
+            print(tests.cpu_speedtest.perform_test())
+        elif test == 'file':
+            print("Running Filesystem Test\n")
+            print(tests.file_speedtest.install_fio())
+            print(tests.file_speedtest.perform_test())
+        elif test == 'network':
+            print("Running Network Test\n")
+            print(tests.network_speedtest.perform_test())
+        elif test == 'volume':
+            print("Running Volume  Test\n")
+            print(tests.file_speedtest.install_fio())
+            print(tests.file_speedtest.perform_test(True))
+    else:
+        print("Help\n")
+        print("Append one of the following arguments to perform the tests\n")
+        print("php - performs a php build on the machine\n")
+        print("cpu - performs a cpu benchmark based on coremark on the machine\n")
+        print("file - performs a filesystem benchmark based on FIO on the machine\n")
+        print("network - performs a network speedtest based on speedtest-cli on the machine\n")
+        print("volume - performs a filesystem benchmark based on FIO on the volume attached to the machine.\n\t Need "
+              "to be mounted under /mnt/test_volume\n")
 
 
 if __name__ == "__main__":
