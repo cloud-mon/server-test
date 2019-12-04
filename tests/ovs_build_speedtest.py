@@ -14,10 +14,9 @@ def perform_test():
         os.remove(file_name)
     except OSError:
         pass
-    call('cd ovs && git checkout origin/branch-2.7 && ./boot.sh && ./configure',
+    call('cd ovs && git checkout origin/branch-2.7 && ./boot.sh >> /dev/null && ./configure >> /dev/null',
          shell=True)
-    command = 'cd ovsc && time make -s -j ' + str(os.getenv(
-        'SERVER_CORES', '1'))
+    command = 'cd ovs && time make -s -j $(nproc)'
     print(command)
     sec_start = time.time()
     call(command, shell=True)
