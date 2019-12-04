@@ -5,7 +5,7 @@ from subprocess import call
 
 
 def clone_php_src():
-    call(['git', 'clone', '--depth', '1','https://github.com/php/php-src.git', '-b' 'branch-2.7'])
+    call(['git', 'clone', '--depth', '1','https://github.com/openvswitch/ovs.git', '-b' 'branch-2.7'])
 
 
 def perform_test():
@@ -16,7 +16,7 @@ def perform_test():
         pass
     call('cd ovs && git checkout origin/branch-2.7 && ./boot.sh && ./configure',
          shell=True)
-    command = 'cdovsc && time make -s -j ' + str(os.getenv(
+    command = 'cd ovsc && time make -s -j ' + str(os.getenv(
         'SERVER_CORES', '1'))
     print(command)
     sec_start = time.time()
