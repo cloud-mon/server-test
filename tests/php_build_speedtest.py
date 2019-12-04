@@ -5,6 +5,8 @@ from subprocess import call
 
 
 def clone_php_src():
+    if os.path.isdir("php-src"):
+        call(['rm','-rf', 'php-src'])
     call(['git', 'clone', 'https://github.com/php/php-src.git'])
 
 
