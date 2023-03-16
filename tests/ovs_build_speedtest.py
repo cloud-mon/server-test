@@ -7,7 +7,7 @@ from subprocess import call
 def clone_php_src():
     if os.path.isdir("ovs"):
         call(['rm','-rf', 'ovs'])
-    call(['git', 'clone', '--depth', '1','https://github.com/openvswitch/ovs.git', '-b' 'branch-2.7'])
+    call(['git', 'clone', '--depth', '1','https://github.com/openvswitch/ovs.git', '-b' 'branch-3.1'])
 
 
 def perform_test():
@@ -16,7 +16,7 @@ def perform_test():
         os.remove(file_name)
     except OSError:
         pass
-    call('cd ovs && git checkout origin/branch-2.7 && ./boot.sh >> /dev/null && ./configure >> /dev/null',
+    call('cd ovs && git checkout origin/branch-3.1 && ./boot.sh >> /dev/null && ./configure >> /dev/null',
          shell=True)
     command = 'cd ovs && time make -s -j $(nproc)'
     print(command)
