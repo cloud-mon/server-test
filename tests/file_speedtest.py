@@ -22,6 +22,11 @@ def perform_test(volume=False):
         path = '/mnt/test_volume/'
         file_name = path + "tmp_result.json"
         filesize = "10"
+        try:
+            os.remove(file_name)
+        except OSError:
+            pass
+    
 
     command = 'fio --runtime=60 --output-format=json --filesize=' + filesize + 'g --ioengine=libaio --filename=' + file + ' --overwrite=1 --invalidate=0 --direct=1 --randrepeat=0 --iodepth=64 --size=4097152k --blocksize=4k --name=random_write --rw=randwrite --end_fsync=1 --name=random_read --stonewall --rw=randread --name=mixed_randrw --stonewall --rw=randrw --rwmixread=90 --rwmixwrite=10 --end_fsync=1>> ' + file_name,
     print(command)
